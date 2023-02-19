@@ -9,10 +9,10 @@ import {
   Select,
   FormControl,
   FormLabel,
-  Input,
-  Box
+  Input
 } from '@chakra-ui/react';
 import InputFieldInformation from './components/Form/InputFieldInformation';
+import AreaAutoCompleteControl from './components/Form/AreaAutoCompleteControl';
 import { useXEForm } from './hooks/useXEForm';
 import { adTypes } from './constants';
 import { useFetchPlaces } from './hooks/useFetchPlaces';
@@ -41,42 +41,7 @@ function App() {
               <Input {...fields.title.input} />
               <InputFieldInformation error={errors.title} info={fields.title.infoText} />
             </FormControl>
-            <FormControl isInvalid={!!errors.area}>
-              <FormLabel mb={0}>{fields.area.label}</FormLabel>
-              <Input {...fields.area.input} />
-              {data.length > 0 && (
-                <Box
-                  display="flex"
-                  flexDir="column"
-                  bg="gray.100"
-                  position="absolute"
-                  top="2xl"
-                  zIndex="docked"
-                  w="full"
-                  mt={1}
-                  borderRadius="md"
-                  maxH="96"
-                  overflowY="auto"
-                  // px={2}
-                  // py={2}
-                >
-                  {data.map((d) => {
-                    return (
-                      <Box
-                        key={d.placeId}
-                        h="10"
-                        px={2}
-                        py={2}
-                        _hover={{ bg: 'gray.200', cursor: 'pointer' }}
-                      >
-                        {d.mainText} - {d.secondaryText}
-                      </Box>
-                    );
-                  })}
-                </Box>
-              )}
-              <InputFieldInformation error={errors.area} info={fields.area.infoText} />
-            </FormControl>
+            <AreaAutoCompleteControl area={fields.area} error={errors.area} places={data} />
             <FormControl isInvalid={!!errors.price}>
               <FormLabel mb={0}>{fields.price.label}</FormLabel>
               <NumberInput>
