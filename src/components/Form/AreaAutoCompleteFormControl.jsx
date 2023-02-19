@@ -1,8 +1,8 @@
 import { FormControl, FormLabel, Input, Box } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
-import InputFieldInformation from './InputFieldInformation';
+import InputFieldInformation from './helpers/InputFieldInformation';
 
-const AreaAutoCompleteControl = ({ area, error, places }) => {
+const AreaAutoCompleteFormControl = ({ area, error, places }) => {
   return (
     <FormControl isInvalid={!!error}>
       <FormLabel mb={0}>{area.label}</FormLabel>
@@ -42,7 +42,7 @@ const AreaAutoCompleteControl = ({ area, error, places }) => {
   );
 };
 
-AreaAutoCompleteControl.propTypes = {
+AreaAutoCompleteFormControl.propTypes = {
   area: PropTypes.shape({
     label: PropTypes.string,
     input: PropTypes.object,
@@ -58,4 +58,4 @@ AreaAutoCompleteControl.propTypes = {
   )
 };
 
-export default AreaAutoCompleteControl;
+export default AreaAutoCompleteFormControl;

@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import InputFieldInformation from '../../../src/components/Form/InputFieldInformation';
+import InputFieldInformation from '../../../src/components/Form/helpers/InputFieldInformation';
 import { FormControl, Input } from '@chakra-ui/react';
 
 test('InputFieldInformation renders with information', () => {
