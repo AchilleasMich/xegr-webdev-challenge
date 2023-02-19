@@ -2,8 +2,15 @@ import { useState } from 'react';
 import { errorMessages, infoMessage } from '../constants';
 
 export const useXEForm = () => {
-  const [errors, setErrors] = useState({});
+  // Area is a special input in XE form and
+  // needs to be a controlled form field
+  const [area, setArea] = useState({
+    placeId: '',
+    mainText: '',
+    secondaryText: ''
+  });
 
+  const [errors, setErrors] = useState({});
   const validate = (e) => {
     let errors = {};
     const title = e.currentTarget.title.value;
@@ -42,7 +49,11 @@ export const useXEForm = () => {
     area: {
       label: 'Area',
       input: { id: 'area', name: 'area', placeholder: infoMessage.FIELD_PLACEHOLDER('Area') },
-      infoText: infoMessage.FIELD_REQUIRED
+      infoText: infoMessage.FIELD_REQUIRED,
+      control: {
+        value: area,
+        setValue: setArea
+      }
     },
     type: {
       label: 'Type',

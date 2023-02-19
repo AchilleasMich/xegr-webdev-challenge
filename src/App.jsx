@@ -15,8 +15,8 @@ import { useFetchPlaces } from './hooks/useFetchPlaces';
 function App() {
   const { fields, handleSubmit, errors } = useXEForm();
 
-  const { data, loading, error } = useFetchPlaces('Athin');
-  console.log(data, loading, error);
+  const { data: places, loading, error: fetchError } = useFetchPlaces(fields.area.control.value);
+  console.log(places, loading, fetchError);
 
   return (
     <Center h="container.sm" data-testid="xe-webdev-challenge">
@@ -32,7 +32,11 @@ function App() {
         <form onSubmit={handleSubmit}>
           <Stack spacing={2} mt={4}>
             <InputFormControl field={fields.title} error={errors.title} />
-            <AreaAutoCompleteFormControl area={fields.area} error={errors.area} places={[]} />
+            <AreaAutoCompleteFormControl
+              area={fields.area}
+              error={errors.area || fetchError}
+              places={places}
+            />
             <NumberInputFormControl field={fields.price} error={errors.price} />
             <SelectInputFormControl field={fields.type} error={errors.type} options={adTypes} />
             <TextareaInputFormControl field={fields.description} error={errors.description} />
