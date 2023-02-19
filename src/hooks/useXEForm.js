@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { errorMessages, infoMessage } from '../constants';
+import { infoMessage } from '../constants';
+import { getFormValue, getFormValues } from '../utils/form';
+import {
+  areaValidation,
+  priceValidation,
+  titleValidation,
+  typeValidation
+} from '../utils/validations';
 
 export const useXEForm = () => {
   // Area is a special input in XE form and
@@ -11,44 +18,51 @@ export const useXEForm = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const validate = (e) => {
-    let errors = {};
-    const title = e.currentTarget.title.value;
-    if (!title) errors.title = errorMessages.FIELD_REQUIRED;
-    if (title.length > 155) errors.title = errorMessages.MAX_CHARS(155);
-
-    const area = e.currentTarget.area.value;
-    if (!area) errors.area = errorMessages.FIELD_REQUIRED;
-
-    const type = e.currentTarget.type.value;
-    if (!type) errors.type = errorMessages.FIELD_REQUIRED;
-
-    const price = e.currentTarget.price.value;
-    if (!price) errors.price = errorMessages.FIELD_REQUIRED;
+  const validate = (form) => {
+    const { title, type, price } = form;
+    const errors = {
+      title: titleValidation(title),
+      area: areaValidation(area),
+      type: typeValidation(type),
+      price: priceValidation(price)
+    };
 
     setErrors(errors);
+    if (Object.keys(errors).some((k) => errors[k] !== '')) {
+      return false;
+    }
+    return true;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    validate(e);
-    const title = e.currentTarget.title.value;
-    const area = e.currentTarget.area.value;
-    const type = e.currentTarget.type.value;
-    const price = e.currentTarget.price.value;
-    const description = e.currentTarget.description.value;
-    console.log(title, area, type, price, description);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = getFormValues(event);
+
+    if (validate(form)) {
+      // send submit request here
+      console.log(form);
+    }
   };
 
   const fields = {
     title: {
       label: 'Title',
-      input: { id: 'title', name: 'title', placeholder: infoMessage.FIELD_PLACEHOLDER('Title') },
+      input: {
+        id: 'title',
+        name: 'title',
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Title'),
+        onBlur: (e) => setErrors({ ...errors, title: titleValidation(getFormValue(e)) })
+      },
       infoText: infoMessage.FIELD_REQUIRED
     },
     area: {
       label: 'Area',
-      input: { id: 'area', name: 'area', placeholder: infoMessage.FIELD_PLACEHOLDER('Area') },
+      input: {
+        id: 'area',
+        name: 'area',
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Area'),
+        onBlur: () => setErrors({ ...errors, area: areaValidation(area) })
+      },
       infoText: infoMessage.FIELD_REQUIRED,
       control: {
         value: area,
@@ -60,7 +74,8 @@ export const useXEForm = () => {
       input: {
         id: 'type',
         name: 'type',
-        placeholder: infoMessage.FIELD_PLACEHOLDER('Type')
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Type'),
+        onBlur: (e) => setErrors({ ...errors, type: typeValidation(getFormValue(e)) })
       },
       infoText: infoMessage.FIELD_REQUIRED
     },
@@ -69,7 +84,8 @@ export const useXEForm = () => {
       input: {
         id: 'price',
         name: 'price',
-        placeholder: infoMessage.FIELD_PLACEHOLDER('Price')
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Price'),
+        onBlur: (e) => setErrors({ ...errors, price: priceValidation(getFormValue(e)) })
       },
       infoText: infoMessage.FIELD_REQUIRED
     },

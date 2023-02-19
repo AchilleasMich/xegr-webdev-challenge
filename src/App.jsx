@@ -15,8 +15,7 @@ import { useFetchPlaces } from './hooks/useFetchPlaces';
 function App() {
   const { fields, handleSubmit, errors } = useXEForm();
 
-  const { data: places, loading, error: fetchError } = useFetchPlaces(fields.area.control.value);
-  console.log(places, loading, fetchError);
+  const { data: places, error: fetchError } = useFetchPlaces(fields.area.control.value);
 
   return (
     <Center h="container.sm" data-testid="xe-webdev-challenge">

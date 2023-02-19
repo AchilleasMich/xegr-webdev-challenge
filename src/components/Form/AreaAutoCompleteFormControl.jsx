@@ -3,15 +3,12 @@ import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import InputFieldInformation from './helpers/InputFieldInformation';
 import AreaAutoCompleteDropdown from './helpers/AreaAutoCompleteDropdown';
+import { formatAreaField } from '../../utils/form';
 
 const AreaAutoCompleteFormControl = ({ area, error, places }) => {
   const [triggerDropdown, setTriggerDropdown] = useState(false);
 
-  let value = area.control.value.mainText;
-  if (area.control.value.secondaryText) {
-    value = `${value} - ${area.control.value.secondaryText}`;
-  }
-
+  const formattedValue = formatAreaField(area.control.value);
   const handleOnChange = (e) => {
     area.control.setValue({
       placeId: '',
@@ -33,6 +30,7 @@ const AreaAutoCompleteFormControl = ({ area, error, places }) => {
 
   const handleOnBlur = () => {
     setTriggerDropdown(false);
+    area.input.onBlur();
   };
 
   return (
@@ -40,7 +38,7 @@ const AreaAutoCompleteFormControl = ({ area, error, places }) => {
       <FormLabel mb={0}>{area.label}</FormLabel>
       <Input
         {...area.input}
-        value={value}
+        value={formattedValue}
         onChange={handleOnChange}
         autoComplete="off"
         onFocus={handleOnFocus}

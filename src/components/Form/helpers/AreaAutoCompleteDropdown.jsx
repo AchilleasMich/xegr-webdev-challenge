@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+import { formatAreaField } from '../../../utils/form';
 
 const AreaAutoCompleteDropdown = ({ handleDropdownSelection, places }) => {
   return (
@@ -19,6 +20,7 @@ const AreaAutoCompleteDropdown = ({ handleDropdownSelection, places }) => {
       overflowY="auto"
     >
       {places.map((place) => {
+        const formattedAreaText = formatAreaField(place);
         return (
           <Box
             key={place.placeId}
@@ -28,7 +30,7 @@ const AreaAutoCompleteDropdown = ({ handleDropdownSelection, places }) => {
             _hover={{ bg: 'gray.200', cursor: 'pointer' }}
             onMouseDown={() => handleDropdownSelection(place)}
           >
-            {place.mainText} - {place.secondaryText}
+            {formattedAreaText}
           </Box>
         );
       })}
