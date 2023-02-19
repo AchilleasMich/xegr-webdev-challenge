@@ -34,7 +34,7 @@ export const useFetchPlaces = (place) => {
   useEffect(() => {
     const handler = setTimeout(() => {
       fetchPlaces();
-    }, 250);
+    }, 200);
     return () => clearTimeout(handler);
   }, [place]);
 

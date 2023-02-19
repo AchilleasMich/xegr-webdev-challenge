@@ -14,7 +14,11 @@ import { usePostProperty } from '../hooks/usePostProperty';
 const NewPropertyForm = () => {
   const { fields, handleSubmit, errors } = useXEForm();
 
-  const { data: places, error: fetchError } = useFetchPlaces(fields.area.control.value);
+  const {
+    data: places,
+    error: fetchError,
+    loading: fetching
+  } = useFetchPlaces(fields.area.control.value);
   const { loading, postProperty } = usePostProperty();
 
   return (
@@ -31,6 +35,7 @@ const NewPropertyForm = () => {
             area={fields.area}
             error={errors.area || fetchError}
             places={places}
+            loading={fetching}
           />
           <NumberInputFormControl field={fields.price} error={errors.price} />
           <SelectInputFormControl field={fields.type} error={errors.type} options={adTypes} />
