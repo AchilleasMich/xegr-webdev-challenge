@@ -15,9 +15,8 @@ const NewPropertyForm = () => {
   const { fields, handleSubmit, errors } = useXEForm();
 
   const { data: places, error: fetchError } = useFetchPlaces(fields.area.control.value);
-  const { success, error, loading, postProperty } = usePostProperty();
-  // will use them to add
-  console.log(success, error);
+  const { loading, postProperty } = usePostProperty();
+
   return (
     <Box display={'flex'} flexDir="column" gap={1}>
       <Center>

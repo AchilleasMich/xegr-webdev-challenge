@@ -1,13 +1,11 @@
 import { useState } from 'react';
+import { createStandaloneToast } from '@chakra-ui/toast';
 
 export const usePostProperty = () => {
-  const [sucess, setSuccess] = useState(false);
+  const { toast } = createStandaloneToast();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const postProperty = async (values) => {
-    setError('');
-    setSuccess(false);
     setLoading(true);
     try {
       const response = await fetch(`http://192.168.1.46:3456/property`, {
@@ -18,20 +16,33 @@ export const usePostProperty = () => {
         body: JSON.stringify(values)
       });
       if (response.ok) {
-        setSuccess(true);
+        toast({
+          title: 'Property Added Successfuly',
+          status: 'success',
+          duration: 3000,
+          isClosable: true
+        });
       } else {
-        setError('Failed to post property');
+        toast({
+          title: 'Failed to create property',
+          status: 'error',
+          duration: 3000,
+          isClosable: true
+        });
       }
     } catch (error) {
-      setError('something went wrong');
+      toast({
+        title: 'Failed to create property',
+        status: 'error',
+        duration: 3000,
+        isClosable: true
+      });
     }
     setLoading(false);
   };
 
   return {
     postProperty,
-    sucess,
-    loading,
-    error
+    loading
   };
 };
