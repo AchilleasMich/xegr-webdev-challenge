@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { errorMessages, infoMessage } from '../constants';
 
 export const useXEForm = () => {
   const [errors, setErrors] = useState({});
@@ -6,17 +7,17 @@ export const useXEForm = () => {
   const validate = (e) => {
     let errors = {};
     const title = e.currentTarget.title.value;
-    if (!title) errors.title = 'Title is required';
-    if (title.length > 155) errors.title = 'Title must not exceed 155 chars';
+    if (!title) errors.title = errorMessages.FIELD_REQUIRED;
+    if (title.length > 155) errors.title = errorMessages.MAX_CHARS(155);
 
     const area = e.currentTarget.area.value;
-    if (!area) errors.area = 'Area is required';
+    if (!area) errors.area = errorMessages.FIELD_REQUIRED;
 
     const type = e.currentTarget.type.value;
-    if (!type) errors.type = 'Type is required';
+    if (!type) errors.type = errorMessages.FIELD_REQUIRED;
 
     const price = e.currentTarget.price.value;
-    if (!price) errors.price = 'Price is required';
+    if (!price) errors.price = errorMessages.FIELD_REQUIRED;
 
     setErrors(errors);
   };
@@ -34,29 +35,40 @@ export const useXEForm = () => {
 
   const fields = {
     title: {
-      id: 'title',
-      name: 'title',
-      placeholder: 'Please Provide Title'
+      label: 'Title',
+      input: { id: 'title', name: 'title', placeholder: infoMessage.FIELD_PLACEHOLDER('Title') },
+      infoText: infoMessage.FIELD_REQUIRED
     },
     area: {
-      id: 'area',
-      name: 'area',
-      placeholder: 'Please Provide Area'
+      label: 'Area',
+      input: { id: 'area', name: 'area', placeholder: infoMessage.FIELD_PLACEHOLDER('Area') },
+      infoText: infoMessage.FIELD_REQUIRED
     },
     type: {
-      id: 'type',
-      name: 'type',
-      placeholder: 'Please Provide Type'
+      label: 'Type',
+      input: {
+        id: 'type',
+        name: 'type',
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Type')
+      },
+      infoText: infoMessage.FIELD_REQUIRED
     },
     price: {
-      id: 'price',
-      name: 'price',
-      placeholder: 'Please Provide Price'
+      label: 'Price',
+      input: {
+        id: 'price',
+        name: 'price',
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Price')
+      },
+      infoText: infoMessage.FIELD_REQUIRED
     },
     description: {
-      id: 'description',
-      name: 'description',
-      placeholder: 'Please Provide Description'
+      label: 'Description',
+      input: {
+        id: 'description',
+        name: 'description',
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Description')
+      }
     }
   };
 

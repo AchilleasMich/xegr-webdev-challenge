@@ -32,25 +32,25 @@ function App() {
         <form onSubmit={handleSubmit}>
           <Stack spacing={2} mt={4}>
             <FormControl isInvalid={!!errors.title}>
-              <FormLabel mb={0}>Title</FormLabel>
-              <Input {...fields.title} />
-              <InputFieldInformation isInvalid={!!errors.title} message="Field is required" />
+              <FormLabel mb={0}>{fields.title.label}</FormLabel>
+              <Input {...fields.title.input} />
+              <InputFieldInformation error={errors.title} info={fields.title.infoText} />
             </FormControl>
             <FormControl isInvalid={!!errors.area}>
-              <FormLabel mb={0}>Area</FormLabel>
-              <Input {...fields.area} />
-              <InputFieldInformation isInvalid={!!errors.area} message="Field is required" />
+              <FormLabel mb={0}>{fields.area.label}</FormLabel>
+              <Input {...fields.area.input} />
+              <InputFieldInformation error={errors.area} info={fields.area.infoText} />
             </FormControl>
             <FormControl isInvalid={!!errors.price}>
-              <FormLabel mb={0}>Price</FormLabel>
+              <FormLabel mb={0}>{fields.price.label}</FormLabel>
               <NumberInput>
-                <NumberInputField {...fields.price} />
+                <NumberInputField {...fields.price.input} />
               </NumberInput>
-              <InputFieldInformation isInvalid={!!errors.price} message="Field is required" />
+              <InputFieldInformation error={errors.price} info={fields.price.infoText} />
             </FormControl>
             <FormControl isInvalid={!!errors.type}>
-              <FormLabel mb={0}>Type</FormLabel>
-              <Select {...fields.type}>
+              <FormLabel mb={0}>{fields.type.label}</FormLabel>
+              <Select {...fields.type.input}>
                 {adTypes.map((option) => {
                   return (
                     <option key={option} value={option}>
@@ -59,11 +59,11 @@ function App() {
                   );
                 })}
               </Select>
-              <InputFieldInformation isInvalid={!!errors.type} message="Field is required" />
+              <InputFieldInformation error={errors.type} info={fields.type.infoText} />
             </FormControl>
             <FormControl>
-              <FormLabel mb={0}>Description</FormLabel>
-              <Textarea {...fields.description} />
+              <FormLabel mb={0}>{fields.description.label}</FormLabel>
+              <Textarea {...fields.description.input} />
             </FormControl>
             <Button type="submit">Submit</Button>
           </Stack>

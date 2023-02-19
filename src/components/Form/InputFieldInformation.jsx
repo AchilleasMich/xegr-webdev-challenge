@@ -4,24 +4,24 @@ import PropTypes from 'prop-types';
 // This component works only as child of the FormControl component
 // In order for the message to appear, isInvalid must passed also as
 // true to the FormControl component
-const InputFieldInformation = ({ isInvalid, message }) => {
-  if (isInvalid) {
+const InputFieldInformation = ({ error, info }) => {
+  if (error) {
     return (
       <FormErrorMessage mt={0.5} data-testid="inputFieldInformation-invalid">
-        {message}
+        {error}
       </FormErrorMessage>
     );
   }
   return (
     <FormHelperText mt={0.5} data-testid="inputFieldInformation-info">
-      {message}
+      {info}
     </FormHelperText>
   );
 };
 
 InputFieldInformation.propTypes = {
-  isInvalid: PropTypes.bool,
-  message: PropTypes.string
+  error: PropTypes.string,
+  info: PropTypes.string
 };
 
 export default InputFieldInformation;

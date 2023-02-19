@@ -8,7 +8,7 @@ test('InputFieldInformation renders with information', () => {
   render(
     <FormControl>
       <Input />
-      <InputFieldInformation isInvalid={false} message="Field is required" />
+      <InputFieldInformation info="Field is required" />
     </FormControl>
   );
 
@@ -19,7 +19,7 @@ test('InputFieldInformation renders with error', () => {
   render(
     <FormControl isInvalid>
       <Input />
-      <InputFieldInformation isInvalid={true} message="Field is required" />
+      <InputFieldInformation error="There is an error" info="Field is required" />
     </FormControl>
   );
 
