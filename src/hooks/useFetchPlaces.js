@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FETCH_PLACES_URL } from '../constants';
 
 export const useFetchPlaces = (place) => {
   const [data, setData] = useState([]);
@@ -16,7 +17,7 @@ export const useFetchPlaces = (place) => {
     setError('');
     setLoading(true);
     try {
-      const response = await fetch(`http://192.168.1.46:3456/places?input=${place.mainText}`);
+      const response = await fetch(`${FETCH_PLACES_URL}?input=${place.mainText}`);
       if (response.ok) {
         const places = await response.json();
         setData(places);

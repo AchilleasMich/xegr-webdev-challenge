@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { createStandaloneToast } from '@chakra-ui/toast';
+import { POST_PROPERTY_URL } from '../constants';
 
 export const usePostProperty = () => {
   const { toast } = createStandaloneToast();
@@ -8,7 +9,7 @@ export const usePostProperty = () => {
   const postProperty = async (values) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://192.168.1.46:3456/property`, {
+      const response = await fetch(POST_PROPERTY_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
