@@ -9,14 +9,19 @@ import {
   Select,
   FormControl,
   FormLabel,
-  Input
+  Input,
+  Box
 } from '@chakra-ui/react';
 import InputFieldInformation from './components/Form/InputFieldInformation';
 import { useXEForm } from './hooks/useXEForm';
 import { adTypes } from './constants';
+import { useFetchPlaces } from './hooks/useFetchPlaces';
 
 function App() {
   const { fields, handleSubmit, errors } = useXEForm();
+
+  const { data, loading, error } = useFetchPlaces('Athin');
+  console.log(data, loading, error);
 
   return (
     <Center h="container.sm" data-testid="xe-webdev-challenge">
@@ -39,6 +44,37 @@ function App() {
             <FormControl isInvalid={!!errors.area}>
               <FormLabel mb={0}>{fields.area.label}</FormLabel>
               <Input {...fields.area.input} />
+              {data.length > 0 && (
+                <Box
+                  display="flex"
+                  flexDir="column"
+                  bg="gray.100"
+                  position="absolute"
+                  top="2xl"
+                  zIndex="docked"
+                  w="full"
+                  mt={1}
+                  borderRadius="md"
+                  maxH="96"
+                  overflowY="auto"
+                  // px={2}
+                  // py={2}
+                >
+                  {data.map((d) => {
+                    return (
+                      <Box
+                        key={d.placeId}
+                        h="10"
+                        px={2}
+                        py={2}
+                        _hover={{ bg: 'gray.200', cursor: 'pointer' }}
+                      >
+                        {d.mainText} - {d.secondaryText}
+                      </Box>
+                    );
+                  })}
+                </Box>
+              )}
               <InputFieldInformation error={errors.area} info={fields.area.infoText} />
             </FormControl>
             <FormControl isInvalid={!!errors.price}>
