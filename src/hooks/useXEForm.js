@@ -39,6 +39,7 @@ export const useXEForm = () => {
     (event) => {
       event.preventDefault();
       const form = getFormValues(event);
+      form.area = area;
 
       if (validate(form)) {
         // send submit request here

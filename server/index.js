@@ -53,7 +53,7 @@ app.post('/property', async (req, res) => {
     // pseudo random temporary unique id
     const id = Date.now().toString(16);
     console.log(id, values);
-    await storage.setItem(id, values);
+    await storage.setItem(id, { ...values, id: id });
 
     return res.status(201).send();
   } catch (error) {

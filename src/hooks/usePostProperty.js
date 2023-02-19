@@ -10,21 +10,19 @@ export const usePostProperty = () => {
     setSuccess(false);
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3456/property`, {
+      const response = await fetch(`http://192.168.1.46:3456/property`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(values)
       });
-      if (response.created) {
+      if (response.ok) {
         setSuccess(true);
       } else {
         setError('Failed to post property');
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log('some error', error);
       setError('something went wrong');
     }
     setLoading(false);

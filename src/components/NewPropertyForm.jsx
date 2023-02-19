@@ -16,11 +16,12 @@ const NewPropertyForm = () => {
 
   const { data: places, error: fetchError } = useFetchPlaces(fields.area.control.value);
   const { success, error, loading, postProperty } = usePostProperty();
+  // will use them to add
   console.log(success, error);
   return (
     <Box display={'flex'} flexDir="column" gap={1}>
       <Center>
-        <Heading as="h2" size="md" h="6" mt={1} pt={4}>
+        <Heading as="h2" size="md" h="6" mt={1} pt={4} justifyContent="center">
           New Property Form
         </Heading>
       </Center>

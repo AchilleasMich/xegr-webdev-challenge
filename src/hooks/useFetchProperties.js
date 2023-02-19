@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react';
 
-export const useFetchPlaces = (place) => {
+export const useFetchProperties = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetchPlaces = async () => {
-    if (place.placeId) {
-      return;
-    }
-    if (place.mainText.length < 3) {
-      setData([]);
-      return;
-    }
+  const fetchProperties = async () => {
     setError('');
     setLoading(true);
     try {
-      const response = await fetch(`http://192.168.1.46:3456/places?input=${place.mainText}`);
+      const response = await fetch(`http://192.168.1.46:3456/properties`);
       if (response.ok) {
         const places = await response.json();
         setData(places);
@@ -32,11 +25,8 @@ export const useFetchPlaces = (place) => {
   };
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      fetchPlaces();
-    }, 250);
-    return () => clearTimeout(handler);
-  }, [place]);
+    fetchProperties();
+  }, []);
 
   return {
     data,
