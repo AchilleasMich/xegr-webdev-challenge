@@ -6,7 +6,8 @@ import {
   Input,
   InputRightElement,
   InputGroup,
-  Spinner
+  Spinner,
+  CloseButton
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import InputFieldInformation from './helpers/InputFieldInformation';
@@ -40,7 +41,7 @@ const AreaAutoCompleteFormControl = ({ area, error, places, loading }) => {
     setTriggerDropdown(false);
     area.input.onBlur();
   };
-  console.log(loading);
+
   return (
     <FormControl isInvalid={!!error}>
       <FormLabel mb={0}>{area.label}</FormLabel>
@@ -54,6 +55,9 @@ const AreaAutoCompleteFormControl = ({ area, error, places, loading }) => {
           onBlur={handleOnBlur}
         />
         {loading && <InputRightElement children={<Spinner />} />}
+        {!loading && triggerDropdown && (
+          <InputRightElement children={<CloseButton onClick={() => setTriggerDropdown(false)} />} />
+        )}
       </InputGroup>
       {triggerDropdown && places.length > 0 && (
         <AreaAutoCompleteDropdown
