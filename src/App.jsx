@@ -34,19 +34,19 @@ function App() {
             <FormControl isInvalid={!!errors.title}>
               <FormLabel mb={0}>Title</FormLabel>
               <Input {...fields.title} />
-              <InputFieldInformation error={!!errors.title} message="Field is required" />
+              <InputFieldInformation isInvalid={!!errors.title} message="Field is required" />
             </FormControl>
             <FormControl isInvalid={!!errors.area}>
               <FormLabel mb={0}>Area</FormLabel>
               <Input {...fields.area} />
-              <InputFieldInformation error={!!errors.area} message="Field is required" />
+              <InputFieldInformation isInvalid={!!errors.area} message="Field is required" />
             </FormControl>
             <FormControl isInvalid={!!errors.price}>
               <FormLabel mb={0}>Price</FormLabel>
               <NumberInput>
                 <NumberInputField {...fields.price} />
               </NumberInput>
-              <InputFieldInformation error={!!errors.price} message="Field is required" />
+              <InputFieldInformation isInvalid={!!errors.price} message="Field is required" />
             </FormControl>
             <FormControl isInvalid={!!errors.type}>
               <FormLabel mb={0}>Type</FormLabel>
@@ -59,7 +59,7 @@ function App() {
                   );
                 })}
               </Select>
-              <InputFieldInformation error={!!errors.type} message="Field is required" />
+              <InputFieldInformation isInvalid={!!errors.type} message="Field is required" />
             </FormControl>
             <FormControl>
               <FormLabel mb={0}>Description</FormLabel>

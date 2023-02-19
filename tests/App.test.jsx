@@ -6,5 +6,5 @@ import App from '../src/App';
 test('App renders', () => {
   render(<App />);
 
-  expect(screen.getByTestId('web-dev-challenge')).toBeInTheDocument();
+  expect(screen.getByTestId('xe-webdev-challenge')).toBeInTheDocument();
 });
