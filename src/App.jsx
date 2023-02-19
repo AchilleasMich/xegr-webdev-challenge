@@ -11,11 +11,14 @@ import {
 import { useXEForm } from './hooks/useXEForm';
 import { adTypes } from './constants';
 import { useFetchPlaces } from './hooks/useFetchPlaces';
+import { usePostProperty } from './hooks/usePostProperty';
 
 function App() {
   const { fields, handleSubmit, errors } = useXEForm();
 
   const { data: places, error: fetchError } = useFetchPlaces(fields.area.control.value);
+  const { success, error, loading, postProperty } = usePostProperty();
+  console.log(success, error);
 
   return (
     <Center h="container.sm" data-testid="xe-webdev-challenge">
@@ -28,7 +31,7 @@ function App() {
             New Property Form
           </Heading>
         </Center>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit((values) => postProperty(values))}>
           <Stack spacing={2} mt={4}>
             <InputFormControl field={fields.title} error={errors.title} />
             <AreaAutoCompleteFormControl
@@ -39,7 +42,9 @@ function App() {
             <NumberInputFormControl field={fields.price} error={errors.price} />
             <SelectInputFormControl field={fields.type} error={errors.type} options={adTypes} />
             <TextareaInputFormControl field={fields.description} error={errors.description} />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" isLoading={loading}>
+              Submit
+            </Button>
           </Stack>
         </form>
       </Stack>

@@ -1,9 +1,21 @@
 const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
+const storage = require('node-persist');
+
+(async () =>
+  await storage.init({
+    dir: './persist',
+    stringify: JSON.stringify,
+    parse: JSON.parse,
+    encoding: 'utf8',
+    logging: true,
+    ttl: 24 * 60 * 60 * 1000,
+    expiredInterval: 2 * 60 * 1000 // every 2 minutes the process will clean-up the expired cache
+  }))();
 
 const app = express();
-
+app.use(express.json());
 app.use(
   cors({
     origin: '*'
@@ -13,7 +25,6 @@ app.use(
 app.use((_req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
-
   next();
 });
 
@@ -29,6 +40,22 @@ app.get('/places', async (req, res) => {
 
     const result = await response.json();
     return res.json(result);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
+app.post('/property', async (req, res) => {
+  const values = req.body;
+
+  try {
+    // pseudo random temporary unique id
+    const id = Date.now().toString(16);
+    console.log(id, values);
+    await storage.setItem(id, values);
+
+    return res.status(201).send();
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'An error occurred' });

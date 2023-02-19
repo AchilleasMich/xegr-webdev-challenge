@@ -34,15 +34,25 @@ export const useXEForm = () => {
     return true;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = getFormValues(event);
+  const handleSubmit =
+    (callback = () => {}) =>
+    (event) => {
+      event.preventDefault();
+      const form = getFormValues(event);
 
-    if (validate(form)) {
-      // send submit request here
-      console.log(form);
-    }
-  };
+      if (validate(form)) {
+        // send submit request here
+        callback(form);
+        event.currentTarget.reset();
+        event.target.reset();
+
+        setArea({
+          placeId: '',
+          mainText: '',
+          secondaryText: ''
+        });
+      }
+    };
 
   const fields = {
     title: {
