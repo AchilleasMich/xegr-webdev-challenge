@@ -62,6 +62,16 @@ app.post('/property', async (req, res) => {
   }
 });
 
+app.get('/properties', async (_, res) => {
+  try {
+    const properties = await storage.values();
+    return res.json(properties);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
 const port = 3456;
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
