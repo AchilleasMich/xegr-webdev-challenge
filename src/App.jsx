@@ -1,54 +1,37 @@
-import { Button, Center, Stack, Heading } from '@chakra-ui/react';
+import { Center, Stack, Heading } from '@chakra-ui/react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Link as UILink } from '@chakra-ui/react';
 
-import {
-  AreaAutoCompleteFormControl,
-  InputFormControl,
-  NumberInputFormControl,
-  SelectInputFormControl,
-  TextareaInputFormControl
-} from './components/Form';
-
-import { useXEForm } from './hooks/useXEForm';
-import { adTypes } from './constants';
-import { useFetchPlaces } from './hooks/useFetchPlaces';
-import { usePostProperty } from './hooks/usePostProperty';
+import NewPropertyForm from './components/NewPropertyForm';
 
 function App() {
-  const { fields, handleSubmit, errors } = useXEForm();
-
-  const { data: places, error: fetchError } = useFetchPlaces(fields.area.control.value);
-  const { success, error, loading, postProperty } = usePostProperty();
-  console.log(success, error);
-
   return (
-    <Center h="container.sm" data-testid="xe-webdev-challenge">
-      <Stack spacing="">
-        <Heading mb={4} as="h1" size="xl" noOfLines={1}>
-          Xe.gr Web Dev Challenge
-        </Heading>
-        <Center>
-          <Heading as="h2" size="md" h="6">
-            New Property Form
+    <Router>
+      <Center h="container.sm" data-testid="xe-webdev-challenge">
+        <Stack spacing="">
+          <Heading as="h1" size="xl" noOfLines={1}>
+            Xe.gr Web Dev Challenge
           </Heading>
-        </Center>
-        <form onSubmit={handleSubmit((values) => postProperty(values))}>
-          <Stack spacing={2} mt={4}>
-            <InputFormControl field={fields.title} error={errors.title} />
-            <AreaAutoCompleteFormControl
-              area={fields.area}
-              error={errors.area || fetchError}
-              places={places}
-            />
-            <NumberInputFormControl field={fields.price} error={errors.price} />
-            <SelectInputFormControl field={fields.type} error={errors.type} options={adTypes} />
-            <TextareaInputFormControl field={fields.description} error={errors.description} />
-            <Button type="submit" isLoading={loading}>
-              Submit
-            </Button>
-          </Stack>
-        </form>
-      </Stack>
-    </Center>
+          <Center display="flex" gap={4}>
+            <Link to="/property">
+              <UILink color="teal.500">Add new Property</UILink>
+            </Link>
+            <Link to="/properties">
+              <UILink color="teal.500">View all Properties</UILink>
+            </Link>
+          </Center>
+          <Switch>
+            <Route exact path="/property" component={NewPropertyForm}></Route>
+            <Route
+              exact
+              path="/properties"
+              component={() => <div>Here we are going to have the routers</div>}
+            ></Route>
+            <Route exact path="/" component={() => <div></div>}></Route>
+          </Switch>
+        </Stack>
+      </Center>
+    </Router>
   );
 }
 
