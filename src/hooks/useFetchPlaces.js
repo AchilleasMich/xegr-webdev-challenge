@@ -17,7 +17,9 @@ export const useFetchPlaces = (place) => {
     setError('');
     setLoading(true);
     try {
-      const response = await fetch(`${FETCH_PLACES_URL}?input=${place.mainText}`);
+      const response = await fetch(`${FETCH_PLACES_URL}?input=${place.mainText}`, {
+        cache: 'force-cache'
+      });
       if (response.ok) {
         const places = await response.json();
         setData(places);
