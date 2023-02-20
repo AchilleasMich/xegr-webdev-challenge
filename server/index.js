@@ -19,6 +19,6 @@ app.get('/places', getPlaces);
 app.post('/property', addNewProperty);
 app.get('/properties', getAllproperties);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4001;
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

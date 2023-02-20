@@ -5,6 +5,11 @@ const propertyCache = createCache(600);
 
 const addNewProperty = async (req, res) => {
   const values = req.body;
+
+  if (!isNewPropertyInputValid(values)) {
+    res.status(400).json({ error: 'Malformed input' })
+  }
+
   try {
     await persistProperty(values);
     propertyCache.del('properties');
@@ -31,6 +36,24 @@ const getAllproperties = async (_, res) => {
     return res.status(500).json({ error: 'An error occurred' });
   }
 };
+
+
+const isNewPropertyInputValid = (values) => {
+  const {
+    title,
+    area,
+    type,
+    price,
+  } = values;
+
+  if (!title) return false
+  if (title.length > 155) return false
+  if (!type) return false
+  if (!price) return false
+  if (!area) return false
+  if (!area.placeId) return false
+  return true
+}
 
 module.exports = {
   getAllproperties,
