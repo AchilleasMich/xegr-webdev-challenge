@@ -8,6 +8,13 @@ import {
   typeValidation
 } from '../utils/validations';
 
+// Custom hook that is responsible for handling all the
+// form logic.
+// Includes form submision, validation, field definiton
+// and error handling on the form
+// Fields are defined and ready to be passed to the Input fields
+// Special handling for the area field which is the only controlled
+// field 
 export const useXEForm = () => {
   // Area is a special input in XE form and
   // needs to be a controlled form field
@@ -42,9 +49,11 @@ export const useXEForm = () => {
       form.area = area;
 
       if (validate(form)) {
-        // send submit request here
         await callback(form);
 
+        // The following command does not clear
+        // the price field, probably an issue with
+        // chakra ui NumberInputField.
         event.target.reset();
         setArea({
           placeId: '',
@@ -60,7 +69,7 @@ export const useXEForm = () => {
       input: {
         id: 'title',
         name: 'title',
-        placeholder: infoMessage.FIELD_PLACEHOLDER('Title'),
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Property Title'),
         onBlur: (e) => setErrors({ ...errors, title: titleValidation(getFormValue(e)) })
       },
       infoText: infoMessage.FIELD_REQUIRED
@@ -70,7 +79,7 @@ export const useXEForm = () => {
       input: {
         id: 'area',
         name: 'area',
-        placeholder: infoMessage.FIELD_PLACEHOLDER('Area'),
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Property Area'),
         onBlur: () => setErrors({ ...errors, area: areaValidation(area) })
       },
       infoText: infoMessage.FIELD_REQUIRED,
@@ -94,7 +103,7 @@ export const useXEForm = () => {
       input: {
         id: 'price',
         name: 'price',
-        placeholder: infoMessage.FIELD_PLACEHOLDER('Price'),
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Price in Euros'),
         onBlur: (e) => setErrors({ ...errors, price: priceValidation(getFormValue(e)) })
       },
       infoText: infoMessage.FIELD_REQUIRED
@@ -104,7 +113,7 @@ export const useXEForm = () => {
       input: {
         id: 'description',
         name: 'description',
-        placeholder: infoMessage.FIELD_PLACEHOLDER('Description')
+        placeholder: infoMessage.FIELD_PLACEHOLDER('Extra Description')
       }
     }
   };

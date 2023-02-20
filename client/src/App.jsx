@@ -4,6 +4,7 @@ import { Link as UILink } from '@chakra-ui/react';
 
 import NewPropertyForm from './components/NewPropertyForm';
 import Properties from './components/Properties';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <Switch>
             <Route exact path="/property" component={NewPropertyForm}></Route>
             <Route exact path="/properties" component={Properties}></Route>
-            <Route exact path="/" component={() => <div></div>}></Route>
+            <Route exact path="/" component={Home}></Route>
           </Switch>
         </Stack>
       </Center>

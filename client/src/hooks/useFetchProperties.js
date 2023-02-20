@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { FETCH_PROPERTIES_URL } from '../constants';
 
+// Custom hook to get properties. It only runs once
+// when the hook is invoked
+// Output: the data, loading and error properties
 export const useFetchProperties = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);

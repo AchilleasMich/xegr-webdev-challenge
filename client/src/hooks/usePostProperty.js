@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { createStandaloneToast } from '@chakra-ui/toast';
 import { POST_PROPERTY_URL, errorMessages, infoMessage } from '../constants';
 
+// Custom hook to handling the logic for the POST request
+// to create new property input.
+// Return the POST function with a loading property
+// The hook is also responsible for posting result toasts
 export const usePostProperty = () => {
   const { toast } = createStandaloneToast();
   const [loading, setLoading] = useState(false);

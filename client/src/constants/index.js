@@ -1,9 +1,9 @@
 export const adTypes = ['Rent', 'Buy', 'Exchange', 'Donate'];
 
 export const infoMessage = {
-  FIELD_REQUIRED: '* Field is Required',
+  FIELD_REQUIRED: '*Field is Required',
   FIELD_PLACEHOLDER: (field) => `Please Provide ${field}`,
-  PROPERTY_ADDED: 'Property Added Successfuly'
+  PROPERTY_ADDED: 'Property Added Successfully'
 };
 
 export const errorMessages = {
@@ -12,6 +12,8 @@ export const errorMessages = {
   NOT_NEGATIVE: 'Field can only accept positive values',
   UNSOPPORTED_OPTION: 'The option is not supported',
   FAIL_CREATE_PROPERTY: 'Failed to create new property',
+  FAIL_FETCH_PLACES: 'Failed to fetch suggestions',
+  GENERIC_ERROR: 'Something went wrong...'
 };
 
 const API_URL = `http://${import.meta.env.VITE_PROPERTIES_API_URL}:${

@@ -3,6 +3,8 @@ import { Box } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import { formatAreaField } from '../../../utils/form';
 
+// Dropdown box listing all the available places
+// Only viable in the context of AreaAutoCompleteFormControl
 const AreaAutoCompleteDropdown = ({ handleDropdownSelection, places }) => {
   return (
     <Box

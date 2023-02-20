@@ -13,12 +13,12 @@ describe('<Properties />', () => {
   })
 
 
-  it('renders properties correctly', () => {
+  it('renders without properties correctly', () => {
     cy.intercept('GET', '/properties', { fixture: 'empty_properties.json' }).as('getProperties')
     cy.mount(<Properties />)
     cy.get('.css-gmuwbf > .chakra-heading').should('contain', 'List of Properties')
     cy.wait(['@getProperties'])
 
-    cy.get('.css-r6kgsy').should('be.empty')
+    cy.get('.css-qki6w2 > .chakra-heading').should('contain', 'No Results Found');
   })
 })

@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
-import { FETCH_PLACES_URL } from '../constants';
+import { errorMessages, FETCH_PLACES_URL } from '../constants';
 
+// Custom hook to handle all the aspects related to
+// fetching the area suggestions. The request is debounced
+// so it does not spam the api
+// Input: the search parameter place
+// Output: The data, loading and error information 
 export const useFetchPlaces = (place) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,12 +27,10 @@ export const useFetchPlaces = (place) => {
         const places = await response.json();
         setData(places);
       } else {
-        setError('Failed to fetch data');
+        setError(errorMessages.FAIL_FETCH_PLACES);
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log('some error', error);
-      setError('something went wrong');
+      setError(errorMessages.GENERIC_ERROR);
     }
     setLoading(false);
   };

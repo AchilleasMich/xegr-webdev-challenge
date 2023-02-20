@@ -14,7 +14,7 @@ describe('<NewPropertyForm />', () => {
     cy.get(':nth-child(1) > [data-testid="inputFieldInformation-info"]').should('be.visible');
   });
 
-  it('renders errors when not all required field are populated', () => {
+  it('renders errors when not all required fields are populated', () => {
     cy.mount(<NewPropertyForm />);
     cy.get('#price').type('123');
     cy.get('.chakra-button').click();

@@ -1,8 +1,10 @@
 import { Box, Heading, Center } from '@chakra-ui/react';
 import { Error, Empty, Loading } from './Generic';
 import { useFetchProperties } from '../hooks/useFetchProperties';
-import PropertiesList from './Cards/PropertiesList';
+import PropertiesList from './Properties/PropertiesList';
 
+// Component to handled the /properties route to present
+// the persisted values
 const Properties = () => {
   const { data: properties, error, loading } = useFetchProperties();
 

@@ -14,6 +14,9 @@ import InputFieldInformation from './helpers/InputFieldInformation';
 import AreaAutoCompleteDropdown from './helpers/AreaAutoCompleteDropdown';
 import { formatAreaField } from '../../utils/form';
 
+
+// Custom non generic component to handle area field which
+// requires specific handling
 const AreaAutoCompleteFormControl = ({ area, error, places, loading }) => {
   const [triggerDropdown, setTriggerDropdown] = useState(false);
 
@@ -55,7 +58,7 @@ const AreaAutoCompleteFormControl = ({ area, error, places, loading }) => {
           onBlur={handleOnBlur}
         />
         {loading && <InputRightElement children={<Spinner />} />}
-        {!loading && triggerDropdown && (
+        {!loading && triggerDropdown && places.length > 0 && (
           <InputRightElement children={<CloseButton onClick={() => setTriggerDropdown(false)} />} />
         )}
       </InputGroup>
