@@ -14,8 +14,6 @@ services:
     - VITE_PROPERTIES_API_PORT=4001
     depends_on:
       - backend
-    # networks:
-    #   - react-express
 
   backend:
     build:
@@ -26,7 +24,3 @@ services:
       - ./server:/usr/src/app
       - /usr/src/app/node_modules
     restart: always
-    # depends_on:
-    #   - backend
-    # networks:
-    #   - react-express

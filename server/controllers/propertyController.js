@@ -23,7 +23,6 @@ const addNewProperty = async (req, res) => {
 const getAllproperties = async (_, res) => {
   cachedProperties = propertyCache.get('properties');
   if (cachedProperties) {
-    console.log('respond with cache');
     return res.json(cachedProperties);
   }
 
@@ -32,7 +31,6 @@ const getAllproperties = async (_, res) => {
     propertyCache.set('properties', properties);
     return res.json(properties);
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ error: 'An error occurred' });
   }
 };

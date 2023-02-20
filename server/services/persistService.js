@@ -1,3 +1,5 @@
+// Pseudo persistant storge solution for the solution
+// Values are persisted in files
 const storage = require('node-persist');
 
 const initStorage = async () =>

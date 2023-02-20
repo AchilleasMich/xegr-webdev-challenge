@@ -1,3 +1,4 @@
+// Third party service handlers
 const fetch = require('node-fetch');
 
 const fetchPlaces = async (query) => {
