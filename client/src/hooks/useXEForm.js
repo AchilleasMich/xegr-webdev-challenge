@@ -36,22 +36,21 @@ export const useXEForm = () => {
 
   const handleSubmit =
     (callback = () => {}) =>
-    (event) => {
+    async (event) => {
       event.preventDefault();
       const form = getFormValues(event);
       form.area = area;
 
       if (validate(form)) {
         // send submit request here
-        callback(form);
-        event.currentTarget.reset();
-        event.target.reset();
-
+        await callback(form);
+        
         setArea({
           placeId: '',
           mainText: '',
           secondaryText: ''
         });
+        event.target.reset();
       }
     };
 

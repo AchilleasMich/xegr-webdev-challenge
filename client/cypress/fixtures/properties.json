@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1232132131",
+    "title": "Athina Home",
+    "area": {
+      "placeId": "123123",
+      "mainText": "Athina",
+      "secondaryText": "Attiki"
+    },
+    "price": "100",
+    "type": "Exhange"
+  },
+  {
+    "id": "1232132131",
+    "title": "Athina Home 2",
+    "area": {
+      "placeId": "123123",
+      "mainText": "Athina",
+      "secondaryText": "Attiki"
+    },
+    "price": "100",
+    "type": "Exhange"
+  }
+]

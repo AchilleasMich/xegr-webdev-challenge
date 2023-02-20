@@ -28,7 +28,7 @@ const NewPropertyForm = () => {
           New Property Form
         </Heading>
       </Center>
-      <form onSubmit={handleSubmit((values) => postProperty(values))}>
+      <form onSubmit={handleSubmit(async (values) => await postProperty(values))}>
         <Stack spacing={2} mt={4}>
           <InputFormControl field={fields.title} error={errors.title} />
           <AreaAutoCompleteFormControl
