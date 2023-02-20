@@ -1,4 +1,5 @@
-import { Box, Center, Heading, Text, Stack } from '@chakra-ui/react';
+import { Box, Heading, Center } from '@chakra-ui/react';
+import { Error, Empty, Loading } from './Generic';
 import { useFetchProperties } from '../hooks/useFetchProperties';
 import PropertiesList from './Cards/PropertiesList';
 
@@ -6,24 +7,11 @@ const Properties = () => {
   const { data: properties, error, loading } = useFetchProperties();
 
   if (loading) {
-    return (
-      <Box>
-        <Center mt="32">
-          <Heading>Loading...</Heading>
-        </Center>
-      </Box>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return (
-      <Box>
-        <Stack mt="32">
-          <Heading>Something went wrong...</Heading>
-          <Text>Please refresh the page</Text>
-        </Stack>
-      </Box>
-    );
+    return <Error />;
   }
 
   return (
@@ -33,9 +21,7 @@ const Properties = () => {
           List of Properties
         </Heading>
       </Center>
-      <div>
-        <PropertiesList properties={properties} />
-      </div>
+      <div>{properties.length > 0 ? <PropertiesList properties={properties} /> : <Empty />}</div>
     </Box>
   );
 };

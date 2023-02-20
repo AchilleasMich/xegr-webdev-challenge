@@ -44,13 +44,13 @@ export const useXEForm = () => {
       if (validate(form)) {
         // send submit request here
         await callback(form);
-        
+
+        event.target.reset();
         setArea({
           placeId: '',
           mainText: '',
           secondaryText: ''
         });
-        event.target.reset();
       }
     };
 

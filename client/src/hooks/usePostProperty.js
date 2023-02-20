@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createStandaloneToast } from '@chakra-ui/toast';
-import { POST_PROPERTY_URL } from '../constants';
+import { POST_PROPERTY_URL, errorMessages, infoMessage } from '../constants';
 
 export const usePostProperty = () => {
   const { toast } = createStandaloneToast();
@@ -18,14 +18,14 @@ export const usePostProperty = () => {
       });
       if (response.ok) {
         toast({
-          title: 'Property Added Successfuly',
+          title: infoMessage.PROPERTY_ADDED,
           status: 'success',
           duration: 3000,
           isClosable: true
         });
       } else {
         toast({
-          title: 'Failed to create property',
+          title: errorMessages.FAIL_CREATE_PROPERTY,
           status: 'error',
           duration: 3000,
           isClosable: true
@@ -33,7 +33,7 @@ export const usePostProperty = () => {
       }
     } catch (error) {
       toast({
-        title: 'Failed to create property',
+        title: errorMessages.FAIL_CREATE_PROPERTY,
         status: 'error',
         duration: 3000,
         isClosable: true

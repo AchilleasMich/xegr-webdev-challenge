@@ -2,14 +2,16 @@ export const adTypes = ['Rent', 'Buy', 'Exchange', 'Donate'];
 
 export const infoMessage = {
   FIELD_REQUIRED: '* Field is Required',
-  FIELD_PLACEHOLDER: (field) => `Please Provide ${field}`
+  FIELD_PLACEHOLDER: (field) => `Please Provide ${field}`,
+  PROPERTY_ADDED: 'Property Added Successfuly'
 };
 
 export const errorMessages = {
   FIELD_REQUIRED: '* Field is Required',
   MAX_CHARS: (max) => `Field must not exceed ${max} chars`,
   NOT_NEGATIVE: 'Field can only accept positive values',
-  UNSOPPORTED_OPTION: 'The option is not supported'
+  UNSOPPORTED_OPTION: 'The option is not supported',
+  FAIL_CREATE_PROPERTY: 'Failed to create new property',
 };
 
 const API_URL = `http://${import.meta.env.VITE_PROPERTIES_API_URL}:${
