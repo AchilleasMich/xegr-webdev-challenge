@@ -3,9 +3,9 @@ const cors = require('cors');
 const { getAllproperties, addNewProperty } = require('./controllers/propertyController');
 const { getPlaces } = require('./controllers/placesController');
 const { corsMiddleware } = require('./middlewares');
-const { initStorage } = require('./services/persistService');
+const persist = require('./services/persistService');
 
-initStorage();
+persist.initStorage();
 const app = express();
 
 app.use(express.json());
