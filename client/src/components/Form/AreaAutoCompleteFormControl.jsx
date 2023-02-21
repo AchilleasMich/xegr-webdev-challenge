@@ -14,7 +14,6 @@ import InputFieldInformation from './helpers/InputFieldInformation';
 import AreaAutoCompleteDropdown from './helpers/AreaAutoCompleteDropdown';
 import { formatAreaField } from '../../utils/form';
 
-
 // Custom non generic component to handle area field which
 // requires specific handling
 const AreaAutoCompleteFormControl = ({ area, error, places, loading }) => {
@@ -66,6 +65,7 @@ const AreaAutoCompleteFormControl = ({ area, error, places, loading }) => {
         <AreaAutoCompleteDropdown
           places={places}
           handleDropdownSelection={handleDropdownSelection}
+          onClose={() => setTriggerDropdown(false)}
         />
       )}
       <InputFieldInformation error={error} info={area.infoText} />
