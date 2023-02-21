@@ -5,9 +5,10 @@ services:
     ports:
       - 4000:4000
     stdin_open: true
-    volumes:
-      - ./client:/usr/src/app
-      - /usr/src/app/node_modules
+    # volumes:
+    #   - ./client/src:/usr/src/app/src
+      # - ./client:/usr/src/app
+      # - /usr/src/app/node_modules
     restart: always
     environment:
     - VITE_PROPERTIES_API_URL=localhost
@@ -21,6 +22,7 @@ services:
     ports:
       - 4001:4001
     volumes:
-      - ./server:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./server/persist:/usr/src/app/persist
+    #   - ./server:/usr/src/app
+    #   - /usr/src/app/node_modules
     restart: always
