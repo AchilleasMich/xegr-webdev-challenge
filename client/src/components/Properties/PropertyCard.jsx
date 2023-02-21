@@ -26,6 +26,9 @@ const PropertyCard = ({ property }) => {
           <ListItem>
             <b>Price in Euros:</b> {property.price}
           </ListItem>
+          <ListItem>
+            <b>Date added:</b> {new Date(property.insertedAt).toUTCString()}
+          </ListItem>
         </List>
       </CardBody>
     </Card>
@@ -37,6 +40,7 @@ PropertyCard.propTypes = {
     title: PropTypes.string,
     type: PropTypes.string,
     price: PropTypes.string,
+    insertedAt: PropTypes.number,
     area: PropTypes.shape({
       placeId: PropTypes.string,
       mainText: PropTypes.string,

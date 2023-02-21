@@ -21,8 +21,6 @@ export const useFetchProperties = () => {
         setError('Failed to fetch data');
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log('some error', error);
       setError('something went wrong');
     }
     setLoading(false);

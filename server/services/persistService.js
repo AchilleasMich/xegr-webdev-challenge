@@ -15,13 +15,15 @@ const initStorage = async () =>
 
 const getAll = async () => {
   const res = await storage.values();
+  res.sort((a, b) => new Date(b.insertedAt) - new Date(a.insertedAt))
   return res;
 };
 
 const persistProperty = async (values) => {
+  const insertedAt = Date.now()
   // pseudo random temporary unique id
-  const id = Date.now().toString(16);
-  await storage.setItem(id, { ...values, id });
+  const id = insertedAt.toString(16);
+  await storage.setItem(id, { ...values, id, insertedAt });
 };
 
 module.exports = {
