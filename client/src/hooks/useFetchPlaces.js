@@ -5,7 +5,7 @@ import { errorMessages, FETCH_PLACES_URL } from '../constants';
 // fetching the area suggestions. The request is debounced
 // so it does not spam the api
 // Input: the search parameter place
-// Output: The data, loading and error information 
+// Output: The data, loading and error information
 export const useFetchPlaces = (place) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);

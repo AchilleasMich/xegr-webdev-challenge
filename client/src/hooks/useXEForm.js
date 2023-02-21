@@ -14,7 +14,7 @@ import {
 // and error handling on the form
 // Fields are defined and ready to be passed to the Input fields
 // Special handling for the area field which is the only controlled
-// field 
+// field
 export const useXEForm = () => {
   // Area is a special input in XE form and
   // needs to be a controlled form field

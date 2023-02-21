@@ -4,7 +4,7 @@ export const Home = () => {
   return (
     <Box>
       <Center mt="32">
-        <SlideFade in={true} initialScale={0.8} offsetY='1000px'>
+        <SlideFade in={true} initialScale={0.8} offsetY="1000px">
           <Heading>Welcome</Heading>
         </SlideFade>
       </Center>
@@ -12,4 +12,4 @@ export const Home = () => {
   );
 };
 
-export default Home
+export default Home;

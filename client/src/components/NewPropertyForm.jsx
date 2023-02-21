@@ -11,7 +11,6 @@ import { adTypes } from '../constants';
 import { useFetchPlaces } from '../hooks/useFetchPlaces';
 import { usePostProperty } from '../hooks/usePostProperty';
 
-
 // Component to handle the /property route
 // Brings together the form logic, the fetching of the
 // places suggetions and the POSTing of the form

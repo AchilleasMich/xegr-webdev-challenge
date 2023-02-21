@@ -7,29 +7,28 @@ import { useKeyPress } from '../../../hooks/useKeyPress';
 // Dropdown box listing all the available places
 // Only viable in the context of AreaAutoCompleteFormControl
 const AreaAutoCompleteDropdown = ({ handleDropdownSelection, places, onClose }) => {
-
-  const arrowUpPressed = useKeyPress('ArrowUp')
-  const arrowDownPressed = useKeyPress('ArrowDown')
-  const escapePressed = useKeyPress('Escape')
-  const enterPressed = useKeyPress('Enter')
-  const [selected, setSelected] = useState(0)
+  const arrowUpPressed = useKeyPress('ArrowUp');
+  const arrowDownPressed = useKeyPress('ArrowDown');
+  const escapePressed = useKeyPress('Escape');
+  const enterPressed = useKeyPress('Enter');
+  const [selected, setSelected] = useState(0);
 
   useEffect(() => {
     if (selected > places.length) {
-      setSelected(0)
+      setSelected(0);
     }
-    if (arrowUpPressed && selected !==0) {
-      setSelected(selected => selected - 1)
+    if (arrowUpPressed && selected !== 0) {
+      setSelected((selected) => selected - 1);
     }
     if (arrowDownPressed && selected < places.length - 1) {
-      setSelected(selected => selected + 1)
+      setSelected((selected) => selected + 1);
     }
     if (enterPressed) {
-      handleDropdownSelection(places[selected])
-      onClose()
+      handleDropdownSelection(places[selected]);
+      onClose();
     }
     if (escapePressed) {
-      onClose()
+      onClose();
     }
   }, [arrowUpPressed, arrowDownPressed, enterPressed, escapePressed, places]);
 
