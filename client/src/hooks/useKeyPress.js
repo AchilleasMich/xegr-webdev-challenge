@@ -1,17 +1,26 @@
 import { useState, useEffect } from 'react';
 
+// Do not bubble up, prevent form from firing
+const preventEnterBubbling = (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+  }
+};
+
 export const useKeyPress = (targetKey) => {
   const [keyPressed, setKeyPressed] = useState(false);
 
   useEffect(() => {
-    const downHandler = ({ key }) => {
-      if (key === targetKey) {
+    const downHandler = (e) => {
+      preventEnterBubbling(e);
+      if (e.key === targetKey) {
         setKeyPressed(true);
       }
     };
 
-    const upHandler = ({ key }) => {
-      if (key === targetKey) {
+    const upHandler = (e) => {
+      preventEnterBubbling(e);
+      if (e.key === targetKey) {
         setKeyPressed(false);
       }
     };
