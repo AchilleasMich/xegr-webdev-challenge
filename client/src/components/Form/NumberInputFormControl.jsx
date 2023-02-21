@@ -6,7 +6,7 @@ const NumberInputFormControl = ({ field, error }) => {
   return (
     <FormControl isInvalid={!!error}>
       <FormLabel mb={0}>{field.label}</FormLabel>
-      <Input type="number" {...field.input} />
+      <Input type="number" step="0.01" {...field.input} />
       <InputFieldInformation error={error} info={field.infoText} />
     </FormControl>
   );

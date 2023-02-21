@@ -12,9 +12,8 @@ import {
 // form logic.
 // Includes form submision, validation, field definiton
 // and error handling on the form
-// Fields are defined and ready to be passed to the Input fields
-// Special handling for the area field which is the only controlled
-// field
+// Fields are defined in the form required by the custom Input fields
+// Special handling for the area field
 export const useXEForm = () => {
   // Area is a special input in XE form and
   // needs to be a controlled form field
@@ -51,9 +50,6 @@ export const useXEForm = () => {
       if (validate(form)) {
         await callback(form);
 
-        // The following command does not clear
-        // the price field, probably an issue with
-        // chakra ui NumberInputField.
         event.target.reset();
         setArea({
           placeId: '',

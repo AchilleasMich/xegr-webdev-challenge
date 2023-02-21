@@ -12,6 +12,8 @@ const addNewProperty = async (req, res) => {
 
   try {
     await persistProperty(values);
+
+    // delete cache entry since it is now invalid
     propertyCache.del('properties');
     return res.status(201).send();
   } catch (error) {
@@ -28,6 +30,8 @@ const getAllproperties = async (_, res) => {
 
   try {
     const properties = await getAll();
+
+    // set the result in cache for future reference
     propertyCache.set('properties', properties);
     return res.json(properties);
   } catch (error) {
